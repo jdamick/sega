@@ -1,5 +1,5 @@
 require "sega/version"
 
 module Sega
-  # Your code goes here...
+  # nothing.
 end
