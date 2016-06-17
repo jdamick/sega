@@ -1,9 +1,9 @@
-require "bundler/gem_tasks"
+require 'bundler/gem_tasks'
 require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
 require_relative 'lib/sega/rake_task'
 
-Sega::RakeTask.new() do |t|
+Sega::RakeTask.new do |t|
   t.bundler_version = '1.10.6'
 end
 

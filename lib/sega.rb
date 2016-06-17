@@ -1,4 +1,4 @@
-require "sega/version"
+require 'sega/version'
 
 module Sega
   # nothing.

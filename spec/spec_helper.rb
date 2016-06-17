@@ -27,7 +27,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     # pre-clone all of the vcr fixture data so we can use both vcr & fakefs.
-    #FakeFS::FileSystem.clone(FIXTURES_DIR)
+    # FakeFS::FileSystem.clone(FIXTURES_DIR)
   end
 
   Kernel.srand config.seed
