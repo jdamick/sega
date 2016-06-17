@@ -1,8 +1,8 @@
 # SEGA - Self-Extracting Gem Archive
 
-This is a tool will help you create a self-extracting gem (cli) archive.
+This is a tool that will help you create a self-extracting gem (cli) archive.
 
-Similar in concept to traveling-ruby or orca or releasy but it makes some basic assumptions to simplify the package.
+Similar in concept to [traveling-ruby](https://github.com/phusion/traveling-ruby) or [orca](https://github.com/larsch/ocra) or [releasy](https://github.com/Spooner/releasy) but it makes some basic assumptions to simplify the package.
 
 Assumes:
 * target machine has ruby (preferably rbenv)
