@@ -1,0 +1,83 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+# frozen_string_literal: true
+
+require 'rubygems/package'
+require 'stringio'
+require 'fileutils'
+
+#####
+
+REQUESTED_RUBY_VERSION = "<%= ruby_version %>" # generated
+REQUESTED_BUNDLER_VERSION = "<%= bundler_version %>" # generated
+
+#####
+
+unless Gem::Dependency.new('ruby', REQUESTED_RUBY_VERSION).match?('ruby', RUBY_VERSION)
+  raise "\n\n[ERROR] Ruby version needs to be atleast: #{REQUESTED_RUBY_VERSION}\n" +
+        "Try rbenv: https://github.com/rbenv/rbenv#installation\n\n"
+end
+
+BUNDLER_VER_ARG = "_#{REQUESTED_BUNDLER_VERSION}_"
+bundle_cmd = "bundle #{BUNDLER_VER_ARG}"
+
+`#{bundle_cmd} -v`
+unless $?.exitstatus == 0
+  raise "\n\n[ERROR] Bundler version needs to be: #{REQUESTED_BUNDLER_VERSION}\n\n"
+end
+####
+
+target_dir = ARGV[0] || "/usr/local/#{File.basename(__FILE__, '.*')}"
+exe_shim_dir = ARGV[1] || "/usr/local/bin"
+
+FileUtils.mkdir_p(target_dir)
+
+file = DATA
+
+Zlib::GzipReader.wrap(file) do |gz|
+  Gem::Package::TarReader.new(gz) do |tar|
+    tar.each do |entry|
+      puts entry.full_name
+
+      dir = File.dirname(File.join(target_dir, entry.full_name))
+      FileUtils.mkdir_p(dir) unless File.exists?(dir)
+      file_name = File.join(target_dir, entry.full_name)
+      File.open(file_name, "w+") do |f|
+        f.write(entry.read)
+      end
+      File.chmod(entry.header.mode & 07777, file_name)
+    end
+  end
+end
+
+# install shim
+
+spec = Gem::Specification.load(Dir[File.join(File.dirname(__FILE__), "*.gemspec")].first)
+bundle_env = "BUNDLE_GEMFILE=#{File.join(target_dir, 'Gemfile')}"
+
+Dir[File.join(spec.bindir, "*")].each do |exe_file|
+puts "exe_file: #{exe_file}"
+  target_shim = File.join(exe_shim_dir, File.basename(exe_file))
+  puts "target_shim: #{target_shim}"
+  File.open(target_shim, "w+") do |f|
+
+    f.write(%Q(
+      #!/bin/bash
+      export #{bundle_env}
+      pre_exec_cmd=""
+      rbenv_version=$(rbenv version 2> /dev/null)
+      if [ "$?" == "0" ]; then
+        pre_exec_cmd="rbenv exec"
+      fi
+      $pre_exec_cmd #{bundle_cmd} exec #{File.join(target_dir, exe_file)} \"$@\"
+    ))
+    f.write("\n")
+  end
+  File.chmod(0755, target_shim)
+end
+
+# run bundler
+`cd #{target_dir} && #{bundle_cmd} install --local`
+
+# after this is the DATA section
+__END__
