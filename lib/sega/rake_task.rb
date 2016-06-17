@@ -77,7 +77,7 @@ module Sega
       end
 
       File.chmod(0755, exec_tgz)
-      debug "created: #{exec_tgz}"
+      puts "Created Self-Extracting Gem Archive: #{exec_tgz}"
       exec_tgz
     end
 

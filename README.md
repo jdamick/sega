@@ -4,6 +4,12 @@ This is a tool that will help you create a self-extracting gem (cli) archive.
 
 Similar in concept to [traveling-ruby](https://github.com/phusion/traveling-ruby) or [orca](https://github.com/larsch/ocra) or [releasy](https://github.com/Spooner/releasy) but it makes some basic assumptions to simplify the package.
 
+For example:
+
+```
+```
+
+
 Assumes:
 * target machine has ruby (preferably [rbenv](https://github.com/rbenv/rbenv))
 * target machine has [bundler](http://bundler.io/)
@@ -51,7 +57,7 @@ Create the self-extracting gem archive:
 bundle exec rake sega:package
 ```
 
-Will generate: <project name>.run
+Will generate: ```<project name>.run```
 
 
 ### Install

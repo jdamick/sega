@@ -1,0 +1,8 @@
+require "bundler/gem_tasks"
+
+require 'sega/rake_task'
+
+Sega::RakeTask.new() do |t|
+  t.bundler_version = '1.10.6' # uses gem version comparison operators
+  t.ruby_version = '~> 2.3.0' # uses gem version comparison operators
+end

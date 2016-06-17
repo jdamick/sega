@@ -1,0 +1,38 @@
+---
+AllCops:
+  Include:
+    - '**/Berksfile'
+    - '**/Rakefile'
+    - '**/*.rake'
+    - '**/*.thor'
+  Exclude:
+    - 'vendor/bundle/*/**/*'
+    - 'vendor/ruby/*/**/*'
+    - 'vendor/*/*/**/*'
+    - 'vendor/*/**'
+    - '**/*.gemspec'
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/LineLength:
+  Max: 140
+
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Style/Documentation:
+  Enabled: false
+
+Style/Next:
+  Enabled: false
+
+Metrics/MethodLength:
+  CountComments: false  # count full line comments?
+  Max: 20
