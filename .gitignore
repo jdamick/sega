@@ -12,3 +12,5 @@ example/hello-sega/vendor
 *.run
 example/hello-sega/*.run
 log
+example/hello-sega/Gemfile.lock
+example/hello-sega/.bundle
