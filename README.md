@@ -1,5 +1,7 @@
 # SEGA - Self-Extracting Gem Archive
 
+[![Gem Version](https://badge.fury.io/rb/sega.svg)](https://badge.fury.io/rb/sega)
+
 This is a tool that will help you create a self-extracting gem (cli) archive.
 
 The executable archive will contain a small installer, the gem, and cached dependencies.  The executable will unzip itself and place the bundled gem in a target directory (default: /usr/local/<project>) and create shim scripts for files specified in the gemspec bindir.  The shim will use rbenv (if possible) so the proper ruby version is used and then run the gem cli within the context of bundler so that the proper dependencies are used.
