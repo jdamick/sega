@@ -13,7 +13,8 @@ For example:
 
 $ $EDITOR Gemfile
 
-## Add
+## Add these lines:
+
 require 'sega/rake_task'
 
 Sega::RakeTask.new() do |t|
@@ -23,17 +24,32 @@ end
 
 
 $ bundle install
+Resolving dependencies...
+Using rake 10.5.0
+Using bundler 1.10.6
+Using hello-sega 0.1.0 from source at .
+Using sega 0.1.2
+Updating files in vendor/cache
+Bundle complete! 4 Gemfile dependencies, 4 gems now installed.
+Use `bundle show [gemname]` to see where a bundled gem is installed.
 
 $ bundle exec rake sega:package
 Using rake 10.5.0
 Using bundler 1.10.6
 Using hello-sega 0.1.0 from source at .
-Using sega 0.1.1
+Using sega 0.1.2
 Updating files in vendor/cache
 Bundle complete! 4 Gemfile dependencies, 4 gems now installed.
 Use `bundle show [gemname]` to see where a bundled gem is installed.
 Updating files in vendor/cache
 Created Self-Extracting Gem Archive: hello-sega.run
+
+$ ./hello-sega.run
+created target shim: /usr/local/bin/hello-sega
+
+$ hello-sega
+Hello SEGA!
+
 ```
 
 
