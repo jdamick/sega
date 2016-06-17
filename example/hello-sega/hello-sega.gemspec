@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "hello-sega"
   spec.version       = Hello::Sega::VERSION
   spec.authors       = ["jdamick"]
-  spec.email         = ["jeffrey.damick@capitalone.com"]
+  spec.email         = ["@jeffreydamick"]
 
   spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
   spec.description   = %q{TODO: Write a longer description or delete this line.}
