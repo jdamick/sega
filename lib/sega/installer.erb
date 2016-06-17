@@ -37,7 +37,7 @@ file = DATA
 Zlib::GzipReader.wrap(file) do |gz|
   Gem::Package::TarReader.new(gz) do |tar|
     tar.each do |entry|
-      puts entry.full_name
+      #puts entry.full_name
 
       dir = File.dirname(File.join(target_dir, entry.full_name))
       FileUtils.mkdir_p(dir) unless File.exists?(dir)
@@ -56,9 +56,9 @@ spec = Gem::Specification.load(Dir[File.join(File.dirname(__FILE__), "*.gemspec"
 bundle_env = "BUNDLE_GEMFILE=#{File.join(target_dir, 'Gemfile')}"
 
 Dir[File.join(spec.bindir, "*")].each do |exe_file|
-puts "exe_file: #{exe_file}"
+#puts "exe_file: #{exe_file}"
   target_shim = File.join(exe_shim_dir, File.basename(exe_file))
-  puts "target_shim: #{target_shim}"
+  puts "created target shim: #{target_shim}"
   File.open(target_shim, "w+") do |f|
 
     f.write(%Q(

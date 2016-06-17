@@ -7,6 +7,33 @@ Similar in concept to [traveling-ruby](https://github.com/phusion/traveling-ruby
 For example:
 
 ```
+# create new gem
+# create exe/<whatever>
+# git add -A
+
+$ $EDITOR Gemfile
+
+## Add
+require 'sega/rake_task'
+
+Sega::RakeTask.new() do |t|
+  t.bundler_version = '1.10.6' # uses gem version comparison operators
+  t.ruby_version = '~> 2.3.0' # uses gem version comparison operators
+end
+
+
+$ bundle install
+
+$ bundle exec rake sega:package
+Using rake 10.5.0
+Using bundler 1.10.6
+Using hello-sega 0.1.0 from source at .
+Using sega 0.1.1
+Updating files in vendor/cache
+Bundle complete! 4 Gemfile dependencies, 4 gems now installed.
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+Updating files in vendor/cache
+Created Self-Extracting Gem Archive: hello-sega.run
 ```
 
 

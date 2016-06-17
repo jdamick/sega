@@ -10,6 +10,7 @@ AllCops:
     - 'vendor/ruby/*/**/*'
     - 'vendor/*/*/**/*'
     - 'vendor/*/**'
+    - 'example/*/**/*'
     - '**/*.gemspec'
 
 Metrics/AbcSize:

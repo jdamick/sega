@@ -8,5 +8,7 @@
 /spec/reports/
 /tmp/
 vendor
+example/hello-sega/vendor
 *.run
+example/hello-sega/*.run
 log
