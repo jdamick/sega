@@ -2,7 +2,7 @@
 
 This is a tool that will help you create a self-extracting gem (cli) archive.
 
-The executable archive will contain a small installer, the gem, and cached dependencies.  The executable will unzip itself and place the bundled gem in a target directory (default: /usr/local/<project>) and create shim scripts for files specified in the gemspec bindir.  The shim will use rbenv (if possible) so the proper ruby version is used and then run the gem cli within the context of bundler so the proper dependencies are used.
+The executable archive will contain a small installer, the gem, and cached dependencies.  The executable will unzip itself and place the bundled gem in a target directory (default: /usr/local/<project>) and create shim scripts for files specified in the gemspec bindir.  The shim will use rbenv (if possible) so the proper ruby version is used and then run the gem cli within the context of bundler so that the proper dependencies are used.
 
 Similar in concept to [traveling-ruby](https://github.com/phusion/traveling-ruby) or [orca](https://github.com/larsch/ocra) or [releasy](https://github.com/Spooner/releasy) but it makes some basic assumptions to simplify the package.
 
