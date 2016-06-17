@@ -7,7 +7,7 @@ Similar in concept to [traveling-ruby](https://github.com/phusion/traveling-ruby
 For example:
 
 ```
-# create new gem
+# create new cli gem
 # create exe/<whatever>
 # git add -A
 
@@ -49,8 +49,8 @@ created target shim: /usr/local/bin/hello-sega
 
 $ hello-sega
 Hello SEGA!
-
 ```
+See [Example Code](example/hello-sega)
 
 
 Assumes:
