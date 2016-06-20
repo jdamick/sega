@@ -18,7 +18,13 @@ unless Gem::Dependency.new('ruby', REQUESTED_RUBY_VERSION).match?('ruby', RUBY_V
         "Try rbenv: https://github.com/rbenv/rbenv#installation\n\n"
 end
 
-BUNDLER_VER_ARG = "_#{REQUESTED_BUNDLER_VERSION}_"
+bundlers = Gem::Specification.find_all { |s|  s.name =~ /bundler/ && Gem::Requirement.new(REQUESTED_BUNDLER_VERSION) =~ s.version }
+if bundlers.empty?
+  raise "\n\n[ERROR] Bundler version needs to be atleast: #{REQUESTED_BUNDLER_VERSION}\n" +
+      "Try rbenv: https://github.com/rbenv/rbenv#installation\n\n"
+end
+
+BUNDLER_VER_ARG = "_#{bundlers.first.version.to_s}_"
 bundle_cmd = "bundle #{BUNDLER_VER_ARG}"
 
 `#{bundle_cmd} -v`
