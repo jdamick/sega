@@ -61,7 +61,7 @@ end
 spec = Gem::Specification.load(Dir[File.join(target_dir, "*.gemspec")].first)
 bundle_env = "BUNDLE_GEMFILE=#{File.join(target_dir, 'Gemfile')}"
 
-Dir[File.join(spec.bindir, "*")].each do |exe_file|
+Dir[File.join(target_dir, spec.bindir, "*")].each do |exe_file|
   target_shim = File.join(exe_shim_dir, File.basename(exe_file))
   puts "created target shim: #{target_shim}"
   File.open(target_shim, "w+") do |f|
