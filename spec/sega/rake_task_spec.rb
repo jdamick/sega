@@ -51,8 +51,11 @@ describe Sega do
         FileUtils.mkdir_p(inst_dir)
         puts sega_run_file
         `#{sega_run_file} #{File.join(inst_dir, 'something')} #{File.join(inst_dir, 'bin')}`
-        expect($?).to eq(0)
-        
+        expect($?.exitstatus).to eq(0) # rubocop:disable Style/SpecialGlobalVars
+        Dir.chdir(File.join(inst_dir, 'bin')) do
+          `package`
+          expect($?.exitstatus).to eq(1) # rubocop:disable Style/SpecialGlobalVars
+        end
       ensure
         cleanup
         Dir.chdir(orig_dir)
