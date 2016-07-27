@@ -52,8 +52,9 @@ describe Sega do
         puts sega_run_file
         `#{sega_run_file} #{File.join(inst_dir, 'something')} #{File.join(inst_dir, 'bin')}`
         expect($?.exitstatus).to eq(0) # rubocop:disable Style/SpecialGlobalVars
+        expect(File.exist?(File.join(inst_dir, 'something', 'Gemfile'))).to be_truthy
         Dir.chdir(File.join(inst_dir, 'bin')) do
-          `package`
+          `./package`
           expect($?.exitstatus).to eq(1) # rubocop:disable Style/SpecialGlobalVars
         end
       ensure
