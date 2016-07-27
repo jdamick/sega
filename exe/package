@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'sega'
+require 'sega/rake_task'
+require 'rake'
+
+Rake.application = Rake::Application.new
+
+Sega::RakeTask.new.package

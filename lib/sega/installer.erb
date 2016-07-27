@@ -57,6 +57,7 @@ Zlib::GzipReader.wrap(file) do |gz|
 end
 
 # install shim
+FileUtils.mkdir_p(exe_shim_dir)
 
 spec = Gem::Specification.load(Dir[File.join(target_dir, "*.gemspec")].first)
 bundle_env = "BUNDLE_GEMFILE=#{File.join(target_dir, 'Gemfile')}"
@@ -73,7 +74,7 @@ rbenv_version=$(rbenv version 2> /dev/null)
 if [ "$?" == "0" ]; then
   pre_exec_cmd="rbenv exec"
 fi
-$pre_exec_cmd #{bundle_cmd} exec #{File.join(target_dir, exe_file)} \"$@\"
+$pre_exec_cmd #{bundle_cmd} exec #{exe_file} \"$@\"
 ))
     f.write("\n")
   end

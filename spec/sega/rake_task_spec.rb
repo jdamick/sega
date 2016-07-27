@@ -2,6 +2,7 @@ require 'spec_helper'
 require 'sega'
 require 'sega/rake_task'
 require 'rake'
+require 'fileutils'
 
 ROOT_DIR = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
 
@@ -31,6 +32,31 @@ describe Sega do
       ensure
         cleanup
         Dir.chdir(orig_dir)
+      end
+    end
+
+    it 'should create an exe shim from sega.run file' do
+      orig_dir = Dir.pwd
+      inst_dir = File.join(ROOT_DIR, 'temp')
+      begin
+        cleanup
+        Dir.chdir(ROOT_DIR)
+
+        expect(subject.package).to eql('sega.run')
+        sega_run_file = File.join(ROOT_DIR, 'sega.run')
+        expect(File.exist?(sega_run_file)).to be_truthy
+
+        FileUtils.chmod(0755, sega_run_file)
+
+        FileUtils.mkdir_p(inst_dir)
+        puts sega_run_file
+        `#{sega_run_file} #{File.join(inst_dir, 'something')} #{File.join(inst_dir, 'bin')}`
+        expect($?).to eq(0)
+        
+      ensure
+        cleanup
+        Dir.chdir(orig_dir)
+        FileUtils.rmtree(inst_dir)
       end
     end
 
